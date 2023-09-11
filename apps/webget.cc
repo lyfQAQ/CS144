@@ -20,11 +20,12 @@ void get_URL( const string& host, const string& path )
   tcp_sock.write(request.str());
 
   string resp;
-  while(resp.size() <= 0) {
+  while(!tcp_sock.eof()) {
     tcp_sock.read(resp);
+    cout << resp;
   }
-
-  cout << resp;
+    
+  tcp_sock.close();
   // cerr << "Function called: get_URL(" << host << ", " << path << ")\n";
   // cerr << "Warning: get_URL() has not been implemented yet.\n";
 }
